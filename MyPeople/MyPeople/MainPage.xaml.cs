@@ -35,6 +35,7 @@ namespace MyPeople
         private async Task<Contact> FindContact(string id)
         {
             ContactStore contactStore = await ContactManager.RequestStoreAsync();
+            if (contactStore == null) return null;
             IReadOnlyList<Contact> contacts = null;
             contacts = await contactStore.FindContactsAsync(id);
             return contacts.FirstOrDefault();
