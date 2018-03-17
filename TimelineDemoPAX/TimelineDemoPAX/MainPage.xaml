@@ -1,0 +1,34 @@
+﻿<Page
+    x:Class="TimelineDemoPAX.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TimelineDemoPAX"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <GridView ItemsSource="{x:Bind MediaContents, Mode=OneWay}" 
+                  SelectionMode="None"
+                  IsItemClickEnabled="True" 
+                  ItemClick="GridView_ItemClick" 
+                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                  animations:Connected.ListItemElementName= "MediaContentImage"
+                  animations:Connected.ListItemKey="listItem"
+                  >
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="local:MediaContent">
+                    <Grid>
+                        <Image x:Name="MediaContentImage" Source="{x:Bind ImageSource}"  MaxWidth="300" Stretch="UniformToFill" />
+                        <StackPanel VerticalAlignment="Bottom" Margin="10">
+                            <TextBlock Text="{x:Bind Event}" Foreground="White" FontWeight="SemiBold" />
+                            <TextBlock Text="{x:Bind Tag}" Foreground="White" FontSize="12" />
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+
+    </Grid>
+</Page>

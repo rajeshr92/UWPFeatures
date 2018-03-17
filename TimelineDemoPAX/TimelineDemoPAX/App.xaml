@@ -1,8 +1,8 @@
 ﻿<Application
-    x:Class="MyPeople.App"
+    x:Class="TimelineDemoPAX.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:MyPeople"
+    xmlns:local="using:TimelineDemoPAX"
     RequestedTheme="Light">
 
 </Application>
