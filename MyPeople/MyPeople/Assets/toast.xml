@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<toast hint-people="RemoteId:danny.seigle@contoso.com">
+  <visual lang="en-US">
+    <binding template="ToastGeneric" experienceType="shoulderTap">
+      <image src="ms-appx:///Assets/thumbs-up.gif"/>
+    </binding>
+  </visual>
+</toast>
