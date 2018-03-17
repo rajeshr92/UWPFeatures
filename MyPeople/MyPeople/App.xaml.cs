@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -8,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -16,43 +16,13 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace TimelineDemoPAX
+namespace MyPeople
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
     sealed partial class App : Application
     {
-        public static ObservableCollection<MediaContent> s_mediacontents = new ObservableCollection<MediaContent>
-        {
-            new MediaContent
-            {
-                Event = "World of Concrete 2018",
-                Tag = "PAX representing Microsoft",
-                ImageSource = "MicrosoftWorldOfConcrete.jpg"
-            },
-
-            new MediaContent
-            {
-                Event = "Healthcare Partner Visit",
-                Tag = "PAX hosting Windows 10 workshop",
-                ImageSource = "PartnerRedmond.JPG"
-            },
-
-            new MediaContent
-            {
-                Event = "Named ISV Visit",
-                Tag = "Relationship Building by PAX",
-                ImageSource = "PartnerRedmondDay.JPG"
-            },
-
-            new MediaContent
-            {
-                Event = "Partner hosting PAX",
-                Tag = "PAX showing off devices",
-                ImageSource = "SiemensHealthineers.jpeg"
-            },
-        };
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -68,6 +38,27 @@ namespace TimelineDemoPAX
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
+        /// 
+
+        protected override void OnActivated(IActivatedEventArgs e)
+        {
+            if (e.Kind == ActivationKind.ContactPanel)
+            {
+                var args = e as ContactPanelActivatedEventArgs;
+
+                args.ContactPanel.HeaderColor = Colors.LightSlateGray;
+
+                var rootFrame = new Frame();
+
+                Window.Current.Content = rootFrame;
+                rootFrame.Navigate(typeof(MyPeopleCanvas), args);
+                Window.Current.Activate();
+
+
+
+            }
+        }
+
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
